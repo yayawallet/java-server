@@ -11,7 +11,10 @@ jobs:
     steps:
       - 
         name: Checkout project sources
-        uses: actions/checkout@v4
+        uses: actions/checkout@
+      -
+        name: Grant execute permission to Gradle wrapper
+        run: chmod +x gradlew
       - 
         name: Setup Gradle
         uses: gradle/gradle-build-action@v2
