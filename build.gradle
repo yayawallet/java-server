@@ -1,5 +1,6 @@
 plugins {
     id 'java'
+    id 'com.google.cloud.tools.jib' version '3.1.4'
 }
 
 jar {
@@ -26,6 +27,19 @@ dependencies {
 
     testImplementation 'org.junit.jupiter:junit-jupiter-api:5.8.1'
     testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.8.1'
+}
+
+jib {
+    from {
+        image = 'azul/zulu-openjdk-alpine:17-latest'
+    }
+    to {
+        image = 'registry.hub.docker.com/yayawallet/java-server'
+        auth {
+            username = project.findProperty('DOCKERHUB_USERNAME') ?: ''
+            password = project.findProperty('DOCKERHUB_PASSWORD') ?: ''
+        }
+    }
 }
 
 test {
