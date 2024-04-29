@@ -4,7 +4,7 @@ RUN gradle build --no-daemon
 
 COPY build/libs /tmp/build/libs
 
-FROM  java:8-jdk AS TEMP_BUILD_IMAGE
+FROM openjdk:8-jdk
 COPY . /tmp
 EXPOSE 8080
 ENTRYPOINT  ["java", "-jar", "/app.jar"]
