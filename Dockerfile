@@ -1,14 +1,10 @@
-FROM openjdk:11
+FROM gradle:4.7.0-jdk8-alpine AS build
+COPY . /temp
+RUN gradle build --no-daemon
 
-VOLUME /tmp
+COPY build/libs /tmp/build/libs
+
+FROM  java:8-jdk AS TEMP_BUILD_IMAGE
+COPY . /tmp
 EXPOSE 8080
-
-WORKDIR /app
-
-COPY build.gradle pom.xml ./
-
-RUN gradle build
-
-COPY app/target/*.jar app.jar
-
-ENTRYPOINT ["java", "-jar", "/app.jar"]
+ENTRYPOINT  ["java", "-jar", "/app.jar"]
