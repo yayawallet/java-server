@@ -30,14 +30,15 @@ dependencies {
 }
 
 jib {
-    container {
-        ports = ['8080/tcp']
-    }
     from {
         image = 'azul/zulu-openjdk-alpine:17-latest'
     }
     to {
-        image = 'hub.docker.com/yayawallet/java-server'
+        image = 'registry.hub.docker.com/yayawallet/java-server'
+        auth {
+            username = System.getenv('DOCKERHUB_USERNAME') ?: ''
+            password = System.getenv('DOCKERHUB_PASSWORD') ?: ''
+        }
     }
 }
 
