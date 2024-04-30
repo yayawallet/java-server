@@ -7,6 +7,7 @@ import com.yaya.sdk.Services.Transfer;
 import com.yaya.sdk.Services.User;
 import io.github.cdimascio.dotenv.Dotenv;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.io.IOException;
@@ -15,8 +16,9 @@ import java.security.NoSuchAlgorithmException;
 import java.util.concurrent.ExecutionException;
 
 @RestController
+@RequestMapping("/user")
 public class UserController {
-    @GetMapping("/user/profile")
+    @GetMapping("/profile")
     public com.yaya.sdk.Models.Profile getProfile() throws IOException, NoSuchAlgorithmException, ExecutionException, InvalidKeyException, InterruptedException {
         ApiClient apiClient = new ApiClient();
         User user = new User(apiClient);
