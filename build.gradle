@@ -36,8 +36,8 @@ jib {
     to {
         image = 'registry.hub.docker.com/yayawallet/java-server'
         auth {
-            username = project.findProperty('DOCKERHUB_USERNAME') ?: ''
-            password = project.findProperty('DOCKERHUB_PASSWORD') ?: ''
+            username = System.getenv('DOCKERHUB_USERNAME') ?: ''
+            password = System.getenv('DOCKERHUB_PASSWORD') ?: ''
         }
     }
 }
