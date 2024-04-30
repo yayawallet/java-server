@@ -16,7 +16,7 @@ import java.util.concurrent.ExecutionException;
 
 @RestController
 public class UserController {
-    @GetMapping("/get-profile")
+    @GetMapping("/user/profile")
     public com.yaya.sdk.Models.Profile getProfile() throws IOException, NoSuchAlgorithmException, ExecutionException, InvalidKeyException, InterruptedException {
         ApiClient apiClient = new ApiClient();
         User user = new User(apiClient);
