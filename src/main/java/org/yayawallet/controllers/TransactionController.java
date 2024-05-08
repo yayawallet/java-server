@@ -28,7 +28,7 @@ public class TransactionController {
         return transaction.createTransaction(createTransaction.getReceiver(), createTransaction.getAmount(), createTransaction.getCause(), createTransaction.getMetaData());
     }
 
-    @PostMapping("/Fee")
+    @PostMapping("/fee")
     public com.yaya.sdk.Models.Fee transactionFee(@RequestBody Fee transactionFee) throws IOException, NoSuchAlgorithmException, ExecutionException, InvalidKeyException, InterruptedException {
         ApiClient apiClient = new ApiClient();
         Transaction transaction = new Transaction(apiClient);

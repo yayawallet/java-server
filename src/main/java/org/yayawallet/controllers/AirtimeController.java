@@ -13,7 +13,7 @@ import java.util.concurrent.ExecutionException;
 @RestController
 @RequestMapping("/airtime")
 public class AirtimeController {
-    @GetMapping("")
+    @GetMapping("/list")
     public com.yaya.sdk.Models.Airtime[] listRecharges() throws IOException, NoSuchAlgorithmException, ExecutionException, InvalidKeyException, InterruptedException {
         ApiClient apiClient = new ApiClient();
         Airtime airtime = new Airtime(apiClient);
