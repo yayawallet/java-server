@@ -1,0 +1,47 @@
+plugins {
+    id 'java'
+    id 'com.google.cloud.tools.jib' version '3.1.4'
+}
+
+jar {
+  manifest {
+    attributes(
+      'Main-Class': 'org.yayawallet.Main'
+    )
+  }
+}
+
+group 'org.yayawallet'
+version '1.0-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+    maven { url 'https://jitpack.io' }
+}
+
+dependencies {
+    // https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-web
+    implementation group: 'org.springframework.boot', name: 'spring-boot-starter-web', version: '2.7.18'
+    implementation 'com.github.yayawallet:yayawallet-java-sdk:0.1.4'
+    implementation 'io.github.cdimascio:dotenv-java:3.0.0'
+
+    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.8.1'
+    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.8.1'
+}
+
+jib {
+    from {
+        image = 'azul/zulu-openjdk-alpine:17-latest'
+    }
+    to {
+        image = 'registry.hub.docker.com/yayawallet/java-server'
+        auth {
+            username = System.getenv('DOCKERHUB_USERNAME') ?: ''
+            password = System.getenv('DOCKERHUB_PASSWORD') ?: ''
+        }
+    }
+}
+
+test {
+    useJUnitPlatform()
+}
