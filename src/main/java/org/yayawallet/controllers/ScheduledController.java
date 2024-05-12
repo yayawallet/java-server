@@ -1,8 +1,6 @@
 package org.yayawallet.controllers;
 import com.yaya.sdk.ApiRequest.ApiClient;
-import com.yaya.sdk.Services.Saving;
 import org.springframework.web.bind.annotation.*;
-import org.yayawallet.Model.Amount;
 import org.yayawallet.Model.Scheduled;
 
 import java.io.IOException;
