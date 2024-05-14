@@ -1,5 +1,7 @@
 package org.yayawallet.Model;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 public class Transaction {
     private String receiver;
 
@@ -7,6 +9,7 @@ public class Transaction {
 
     private String cause;
 
+    @JsonProperty("meta_data")
     private String metaData;
 
     public String getReceiver() {
